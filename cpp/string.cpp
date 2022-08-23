@@ -71,6 +71,17 @@ bool isUniqChar_2(std::string s)
   return true;
 }
 
+/* my String length */
+int myStrLen(const char *s)
+{
+  int len = -1;
+  if (s == nullptr) return len;  
+  
+  while (*s++ != '\0') len++;
+  
+  return len;
+}
+
 /* Reverse the string, bruteforce way :) */
 void revString(char *s) 
 {
@@ -90,6 +101,37 @@ void revString(char *s)
     t++, s--;
   }
 
+  return;
+}
+
+/* Check if the given string is polyndrome */
+bool isPolindrome_1(const char *s)
+{
+  if (s) 
+  {
+    const char *t = s + myStrLen(s);
+    
+    while (t != s) if (*t-- != *s++) return false;
+  }
+  
+  return true;
+}
+
+/* Remove duplicates */
+void delDupChar(const char *s)
+{
+  if (s == nullptr) return;
+  
+  bool char[128] = {false};
+  while (*s != '\0') 
+  {
+    if (!char[*s]) {
+      *s = *(s+1);
+    } else char[*s] = true;
+    
+    s++;
+  }
+  
   return;
 }
 
