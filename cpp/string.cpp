@@ -4,7 +4,9 @@
 
 #include <iostream>
 
-/* is all chars are unique in string, uses ASCI table size of state array */
+/* is all chars are unique in string, uses ASCI table size of state array 
+* Complexity: Time - O(N), Space - K. 
+*/
 bool isUniqChar_1(std::string s)
 {
   bool state[256] = {false};
@@ -71,7 +73,9 @@ bool isUniqChar_2(std::string s)
   return true;
 }
 
-/* my String length */
+/* my String length 
+* Complexity: Time - O(N), Space - K. 
+*/
 int myStrLen(const char *s)
 {
   int len = -1;
@@ -104,7 +108,9 @@ void revString(char *s)
   return;
 }
 
-/* Check if the given string is polyndrome */
+/* Check if the given string is polyndrome
+* Complexity: Time - O(N), Space - K. 
+*/
 bool isPolindrome_1(const char *s)
 {
   if (s) 
@@ -117,7 +123,9 @@ bool isPolindrome_1(const char *s)
   return true;
 }
 
-/* Remove duplicates */
+/* Remove duplicates 
+* Complexity: Time - O(N), Space - K. 
+*/
 void delDupChar(const char *s)
 {
   if (s == nullptr) return;
@@ -134,6 +142,25 @@ void delDupChar(const char *s)
   
   return;
 }
+
+/* is Anagrams? both strings have same characters?
+* Complexity: Time - O(N), Space - K. 
+*/
+bool isAnagram_1(char *s1, char *s2)
+{
+  if ((s1 == nullptr) || (s2 == nullptr)) return false;
+  if (s1 == s2) return true;
+  
+  int charCnt[256] = {0};
+  while (*s1 != '\0') charCnt[*s1++]++;
+  while (*s2 != '\0') charCnt[*s2++]--;
+
+  for (int i = 0; i < 256; i++)
+    if (charCnt[i]) return false;
+  
+  return true;
+}
+
 
 int main()
 {
