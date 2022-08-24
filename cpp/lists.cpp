@@ -3,29 +3,33 @@
 * Copyright @kranthy.com@gmail.com
 */
 
-/* Single linked list */
-typedef struct single_list_t {
+/* node, as double linked list */
+typedef struct node_t {
   int val;
-  single_list_t *next;
-} single_list_t;
-
-/* Double linked list */
-typedef struct double_list_t {
-  int val;
-  double_list_t *next;
-  double_list_t *prev;
-} double_list_t;
+  node_t *next = nullptr;
+  node_t *prev = nullptr;
+} node_t;
 
 /* is Single list loop */
-bool hasLoop(single_list_t *h)
+bool hasLoop(node_t *h)
 {
   if (h == nullptr) return false;
-  
-  single_list_t *t = h;
-  while (h != t) {
+    
+  node_t *t = h;
+  do {
     h = h->next;
-    t = t->next->next;
-  }
+    t = ((node_t *)(t->next))->next;
+  } while (h != t);
 
   return (h == t);
+}
+
+int main()
+{
+  node_t *t = malloc(node_t);
+  t->val = 1;
+  t->next = malloc(node_t);
+  t->next->next = t;
+
+  hasLoop(t);
 }
