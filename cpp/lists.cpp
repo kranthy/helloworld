@@ -4,10 +4,10 @@
 */
 
 /* node, as double linked list */
-typedef struct node_t {
+typedef struct {
   int val;
-  node_t *next = nullptr;
-  node_t *prev = nullptr;
+  struct node_t *next = nullptr;
+  struct node_t *prev = nullptr;
 } node_t;
 
 /* is Single list loop */
@@ -18,10 +18,11 @@ bool hasLoop(node_t *h)
   node_t *t = h;
   do {
     h = h->next;
-    t = ((node_t *)(t->next))->next;
+    t = t->next;
+    if (t) t = t->next;
   } while (h != t);
 
-  return (h == t);
+  return (h != nullptr);
 }
 
 int main()
